@@ -16,7 +16,7 @@ namespace Calculator
 
             var calculationResult = Calculate(parametersFile);
 
-            Console.WriteLine($@"Your result is {calculationResult}");
+            Console.WriteLine($@"Your result is {calculationResult}.");
             Console.ReadKey();
 
         }
