@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,19 +25,37 @@ namespace Calculator
         {
             double result;
 
+            var parameters = File.ReadAllText(parametersFile).ToUpper().Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
+            double.TryParse(parameters.Where(n => n.Contains("BASE")).First().Replace("BASE", ""), out result);
 
-
-
-
-
-
+            foreach (var parameter in parameters.Where(n => !n.Contains("BASE")))
+            {
+                var operationName = parameter.Split(' ')[0]; 
+                var operationValue = Convert.ToDouble(parameter.Split(' ')[1]); 
+                Operation(operationName, ref result, operationValue); 
+            } 
             return result;
+        } 
+
+
+        private static void Operation(string operationName, ref double baseNumber, double operationValue)
+        {
+            switch (operationName)
+            {
+                case "DIVIDE":
+                    baseNumber /= operationValue;
+                    break;
+                case "MULTIPLY":
+                    baseNumber *= operationValue;
+                    break;
+                case "ADD":
+                    baseNumber += operationValue;
+                    break;
+                case "MINUS":
+                    baseNumber -= operationValue;
+                    break;
+            } 
         }
-
-
-
-
-
     }
 }
