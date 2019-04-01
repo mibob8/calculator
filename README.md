@@ -7,5 +7,5 @@ multiply 5
 add 82  
 base 10  
  
-Base is a start value for others calculation. 
+Base is a start value for others calculations. 
  
