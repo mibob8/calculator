@@ -8,3 +8,4 @@ add 82
 base 10
  
 Base is a start value for others calculation. 
+ 
