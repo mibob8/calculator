@@ -31,31 +31,27 @@ namespace Calculator
 
             foreach (var parameter in parameters.Where(n => !n.Contains("BASE")))
             {
-                var operationName = parameter.Split(' ')[0]; 
-                var operationValue = Convert.ToDouble(parameter.Split(' ')[1]); 
-                Operation(operationName, ref result, operationValue); 
+                var operationName = parameter.Split(' ')[0].Trim(); 
+                var operationValue = Convert.ToDouble(parameter.Split(' ')[1].Trim());  
+                 
+                switch (operationName)
+                {
+                    case "DIVIDE":
+                        result /= operationValue;
+                        break;
+                    case "MULTIPLY":
+                        result *= operationValue;
+                        break;
+                    case "ADD":
+                        result += operationValue;
+                        break;
+                    case "MINUS":
+                        result -= operationValue;
+                        break;
+                } 
             } 
+
             return result;
-        } 
-
-
-        private static void Operation(string operationName, ref double baseNumber, double operationValue)
-        {
-            switch (operationName)
-            {
-                case "DIVIDE":
-                    baseNumber /= operationValue;
-                    break;
-                case "MULTIPLY":
-                    baseNumber *= operationValue;
-                    break;
-                case "ADD":
-                    baseNumber += operationValue;
-                    break;
-                case "MINUS":
-                    baseNumber -= operationValue;
-                    break;
-            } 
-        }
+        }  
     }
 }
